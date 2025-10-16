@@ -17,8 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="SistemaFinanceiro.Application\" />
-      <Folder Include="SistemaFinanceiro.Infrastructure\" />
+      <Folder Include="SistemaFinanceiro.Infrastructure\Data\" />
     </ItemGroup>
 
 </Project>
