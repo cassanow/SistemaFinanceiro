@@ -44,29 +44,30 @@ public class ClienteController : Microsoft.AspNetCore.Mvc.Controller
     [HttpPost("Register")]
     public async Task<IActionResult> RegisterCliente([FromBody] CreateClienteDTO dto)
     {
-        var cliente = await _clienteRepository.GetByCPF(dto.CPF);
-
-        var existe = await _clienteRepository.ClienteExists(cliente.Id);
+        var existe = await _clienteRepository.GetByCPF(dto.CPF);
         
-        if(existe)
+        if(existe != null)
             return BadRequest();
         
         if(!ModelState.IsValid)
            return BadRequest(ModelState);
-       
-        cliente.CPF = dto.CPF;
-        cliente.Nome = dto.Nome;
-        cliente.Email = dto.Email;
-        cliente.Telefone = dto.Telefone;
-        cliente.Endereco = dto.Endereco;
-        cliente.DataNascimento = dto.DataNascimento;
+
+        var cliente = new Cliente
+        {
+            CPF = dto.CPF,
+            Nome = dto.Nome,
+            Email = dto.Email,
+            Telefone = dto.Telefone,
+            Endereco = dto.Endereco,
+            DataNascimento = dto.DataNascimento
+        };
         
        await _clienteRepository.Add(cliente);
         
        return Ok(dto);
     }
 
-    [HttpPost("Update/{id:int}")]
+    [HttpPut("Update/{id:int}")]
     public async Task<IActionResult> UpdateCliente(int id, CreateClienteDTO dto)
     {
         var cliente = await _clienteRepository.GetById(id);
