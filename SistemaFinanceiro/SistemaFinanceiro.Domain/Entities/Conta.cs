@@ -11,7 +11,7 @@ public class Conta
     
     public decimal Saldo { get; set; }
     
-    public DateTime DataAberturaa { get; set; }
+    public DateTime DataAbertura { get; set; }
     
     public int ClienteId { get; set; }
     

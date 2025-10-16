@@ -15,6 +15,8 @@ public class Cliente
     
     public string Telefone { get; set; }
     
+    public string Endereco { get; set; }
+    
     public DateTime DataNascimento { get; set; }
     
     public ICollection<Conta> Contas { get; set; }

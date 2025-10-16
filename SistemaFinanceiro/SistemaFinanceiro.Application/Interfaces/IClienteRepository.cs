@@ -9,8 +9,12 @@ public interface IClienteRepository
     Task<bool> Update(Cliente cliente);
     
     Task<bool> Delete(Cliente cliente);
+
+    Task<IEnumerable<Cliente>> GetAll();
     
     Task<Cliente> GetById(int id);
+    
+    Task<Cliente> GetByCPF(string cpf);
     
     Task<bool> ClienteExists(int id);
 }

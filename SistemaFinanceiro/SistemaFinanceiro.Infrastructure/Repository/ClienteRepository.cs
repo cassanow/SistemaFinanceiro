@@ -34,10 +34,18 @@ public class ClienteRepository : IClienteRepository
         await _context.SaveChangesAsync();
         return true;
     }
-
+    public async Task<IEnumerable<Cliente>> GetAll()
+    {
+        return await _context.Cliente.ToListAsync();
+    }
     public async Task<Cliente> GetById(int id)
     {
         return await _context.Cliente.Where(c => c.Id == id).FirstOrDefaultAsync();
+    }
+
+    public async Task<Cliente> GetByCPF(string cpf)
+    {
+        return await _context.Cliente.Where(c => c.CPF == cpf).FirstOrDefaultAsync();
     }
 
     public async Task<bool> ClienteExists(int id)

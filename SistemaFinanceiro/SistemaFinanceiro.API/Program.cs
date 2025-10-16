@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaFinanceiro.Context;
+using SistemaFinanceiro.SistemaFinanceiro.Application.Interfaces;
+using SistemaFinanceiro.SistemaFinanceiro.Infrastructure.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
 
 var app = builder.Build();
 
